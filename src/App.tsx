@@ -20,7 +20,10 @@ import {
   Soup
 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
-import logoImg from './picture/dimsam.jpg';
+import logoImg from './picture/logo/dimsam.jpg';
+import mentaiImg from './picture/food/Dimsum Mentai.jpg';
+import dumplingKejuImg from './picture/food/dumpling Keju.jpg';
+import fruitTeaImg from './picture/drnk/Fruit tea.jpg';
 
 // --- Components ---
 
@@ -394,42 +397,23 @@ export default function App() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
             <ProductCard 
-              title="Siomay Ayam"
-              description="Dimsum klasik dengan isian ayam gurih dan tekstur lembut, cocok untuk semua kalangan."
-              image="https://images.unsplash.com/photo-1615878772342-f5151ee1b200?q=80&w=2574&auto=format&fit=crop"
-              tag="Best Seller"
-            />
-            <ProductCard 
-              title="Hakau Udang"
-              description="Kulit tipis dengan isian udang segar yang juicy dan memiliki rasa manis alami."
-              image="https://images.unsplash.com/photo-1563245391-45607340620c?q=80&w=2574&auto=format&fit=crop"
-            />
-            <ProductCard 
-              title="Lumpia Kulit Tahu"
-              description="Perpaduan tekstur renyah di luar dan lembut di dalam, menghadirkan cita rasa yang unik."
-              image="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2670&auto=format&fit=crop"
-            />
-            <ProductCard 
               title="Dimsum Mentai"
               description="Dimsum dengan topping saus mentai creamy yang menjadi favorit pelanggan kekinian."
-              image="https://images.unsplash.com/photo-1541696490-8744a5db7f7c?q=80&w=2670&auto=format&fit=crop"
+              image={mentaiImg}
               tag="Favorit"
             />
             <ProductCard 
-              title="Paket Frozen"
-              description="Pilihan praktis untuk stok di rumah. Mudah disiapkan dan tetap lezat kapan saja untuk keluarga."
-              image="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=2670&auto=format&fit=crop"
-              tag="Praktis"
+              title="Dumpling Keju"
+              description="Perpaduan sempurna antara lembutnya dimsum dan lumeran keju gurih di dalamnya."
+              image={dumplingKejuImg}
+              tag="Best Seller"
             />
-            <div className="bg-gray-900 rounded-3xl p-10 flex flex-col justify-center text-center text-white relative overflow-hidden group">
-              <div className="relative z-10">
-                <UtensilsCrossed className="w-16 h-16 text-orange-500 mx-auto mb-6" />
-                <h3 className="text-2xl font-bold mb-4">Varian Lain Diperjalanan</h3>
-                <p className="text-gray-400 mb-8 leading-relaxed">Nantikan inovasi rasa terbaru dari dapur kami segera!</p>
-                <button className="w-full py-4 border border-white/20 rounded-2xl hover:bg-white hover:text-gray-900 transition-all font-bold">Follow Instagram</button>
-              </div>
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600/20 blur-3xl rounded-full" />
-            </div>
+            <ProductCard 
+              title="Fruit Tea"
+              description="Minuman teh buah segar yang manis dan menyegarkan, sangat cocok disajikan dengan dimsum."
+              image={fruitTeaImg}
+              tag="Segar"
+            />
           </div>
 
           <div className="mt-20 bg-orange-50 rounded-[3rem] p-12 md:p-16 border border-orange-100 flex flex-col md:flex-row items-center justify-between gap-12">
