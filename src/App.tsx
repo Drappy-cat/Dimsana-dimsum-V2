@@ -20,6 +20,7 @@ import {
   Soup
 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
+import logoImg from './picture/dimsam.jpg';
 
 // --- Components ---
 
@@ -46,9 +47,7 @@ const Navbar = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md py-3 shadow-sm' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center">
-            <span className="text-white font-bold text-xl">D</span>
-          </div>
+          <img src={logoImg} alt="Dimsana Logo" className="w-10 h-10 rounded-full object-cover" />
           <span className={`text-2xl font-bold tracking-tight ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
             Dimsana
           </span>
@@ -618,9 +617,7 @@ export default function App() {
 
           <div className="border-t border-white/10 pt-12 flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">D</span>
-              </div>
+              <img src={logoImg} alt="Dimsana Logo" className="w-8 h-8 rounded-full object-cover" />
               <span className="text-xl font-bold tracking-tight">Dimsana</span>
             </div>
 
