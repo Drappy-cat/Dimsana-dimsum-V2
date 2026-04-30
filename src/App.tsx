@@ -260,19 +260,118 @@ const TestimonialCard = ({ quote, author, role }: { quote: string, author: strin
   </div>
 );
 
-const TeamCard = ({ name, nim, prodi, image }: { name: string, nim: string, prodi: string, image: string }) => (
-  <motion.div 
-    whileHover={{ y: -10 }}
-    className="bg-white dark:bg-gray-800 p-8 rounded-[3rem] shadow-xl shadow-gray-200/50 dark:shadow-none border border-transparent dark:border-gray-700 text-center transition-all group"
-  >
-    <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-orange-100 dark:border-gray-700 group-hover:border-orange-500 transition-colors">
-      <img src={image} alt={name} className="w-full h-full object-cover" />
+const particlePositions = [
+  { top: '10%', left: '20%', delay: 0, duration: 2 },
+  { top: '30%', left: '80%', delay: 0.5, duration: 2.5 },
+  { top: '70%', left: '15%', delay: 1, duration: 2.2 },
+  { top: '80%', left: '75%', delay: 1.5, duration: 2.8 },
+  { top: '20%', left: '50%', delay: 0.2, duration: 2.1 },
+  { top: '50%', left: '10%', delay: 0.8, duration: 2.4 },
+  { top: '60%', left: '90%', delay: 1.2, duration: 2.6 },
+];
+
+const ShootingStars = () => {
+  const stars = [
+    { top: '-10%', left: '80%', delay: '0s', duration: '2s' },
+    { top: '10%', left: '100%', delay: '1.5s', duration: '2.5s' },
+    { top: '-20%', left: '40%', delay: '2s', duration: '3s' },
+    { top: '30%', left: '110%', delay: '0.5s', duration: '2.2s' },
+    { top: '0%', left: '60%', delay: '3s', duration: '2.8s' },
+    { top: '-10%', left: '20%', delay: '4s', duration: '2s' },
+    { top: '40%', left: '120%', delay: '1.2s', duration: '2.4s' },
+  ];
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none hidden dark:block z-0">
+      {stars.map((star, i) => (
+        <div
+          key={i}
+          className="absolute w-[2px] h-[150px] bg-gradient-to-t from-white via-orange-400/60 to-transparent animate-shooting-star opacity-0 rounded-full blur-[1px]"
+          style={{
+            top: star.top,
+            left: star.left,
+            animationDelay: star.delay,
+            animationDuration: star.duration,
+          }}
+        />
+      ))}
     </div>
-    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{name}</h3>
-    <p className="text-orange-600 dark:text-orange-500 font-bold text-sm mb-1">{nim}</p>
-    <p className="text-gray-500 dark:text-gray-400 text-sm">{prodi}</p>
-  </motion.div>
-);
+  );
+};
+
+const TeamCard = ({ name, nim, prodi, image }: { name: string, nim: string, prodi: string, image: string }) => {
+  return (
+    <motion.div 
+      whileHover="hover"
+      initial="initial"
+      className="bg-white dark:bg-gray-800 p-8 rounded-[3rem] shadow-xl shadow-gray-200/50 dark:shadow-none border border-transparent dark:border-gray-700 text-center transition-all group relative overflow-hidden"
+    >
+      {/* Background glow on hover */}
+      <motion.div 
+        variants={{
+          initial: { opacity: 0 },
+          hover: { opacity: 1 }
+        }}
+        className="absolute inset-0 bg-gradient-to-t from-orange-500/5 to-transparent pointer-events-none z-0 transition-opacity duration-500"
+      />
+
+      {/* Particles */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {particlePositions.map((pos, i) => (
+          <motion.div
+            key={i}
+            variants={{
+              initial: { opacity: 0, scale: 0, y: 0 },
+              hover: { 
+                opacity: [0, 1, 0], 
+                scale: [0.5, 1.5, 0.5], 
+                y: -40,
+                transition: { 
+                  duration: pos.duration, 
+                  repeat: Infinity, 
+                  delay: pos.delay,
+                  ease: "easeInOut"
+                }
+              }
+            }}
+            className="absolute w-1.5 h-1.5 bg-orange-400 rounded-full shadow-[0_0_8px_2px_rgba(251,146,60,0.8)] dark:bg-orange-500 dark:shadow-[0_0_8px_2px_rgba(249,115,22,0.8)]"
+            style={{ left: pos.left, top: pos.top }}
+          />
+        ))}
+      </div>
+
+      <div className="relative z-10">
+        <motion.div 
+          variants={{ 
+            initial: { y: 0 },
+            hover: { y: -10, transition: { duration: 0.3 } } 
+          }}
+          className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-orange-100 dark:border-gray-700 group-hover:border-orange-500 transition-colors bg-white"
+        >
+          <img src={image} alt={name} className="w-full h-full object-cover" />
+        </motion.div>
+        <motion.h3 
+          variants={{ hover: { y: -5 } }}
+          className="text-xl font-bold text-gray-900 dark:text-white mb-2"
+        >
+          {name}
+        </motion.h3>
+        <motion.p 
+          variants={{ hover: { y: -5 } }}
+          className="text-orange-600 dark:text-orange-500 font-bold text-sm mb-1"
+        >
+          {nim}
+        </motion.p>
+        <motion.p 
+          variants={{ hover: { y: -5 } }}
+          className="text-gray-500 dark:text-gray-400 text-sm"
+        >
+          {prodi}
+        </motion.p>
+      </div>
+    </motion.div>
+  );
+};
 
 // --- Main App ---
 
@@ -416,7 +515,8 @@ export default function App() {
 
       {/* Tentang Kami Section */}
       <section id="tentang" className="py-24 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <ShootingStars />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-20 items-center">
             <div className="order-2 md:order-1 relative">
               <motion.div 
