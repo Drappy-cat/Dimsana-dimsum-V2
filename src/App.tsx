@@ -23,6 +23,8 @@ import React, { useState, useEffect } from 'react';
 import logoImg from './picture/logo/dimsam.jpg';
 import mentaiImg from './picture/food/Dimsum Mentai.jpg';
 import dumplingKejuImg from './picture/food/dumpling Keju.jpg';
+import mentaiImg2 from './picture/food/Dimsum mentai 2.jpg';
+import dumplingKejuImg2 from './picture/food/dumpling Keju 2.jpg';
 import fruitTeaImg from './picture/drnk/Fruit tea.jpg';
 
 // --- Components ---
@@ -343,9 +345,9 @@ export default function App() {
                 className="relative z-10"
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1563245391-45607340620c?q=80&w=2574&auto=format&fit=crop" 
+                  src={logoImg} 
                   alt="About Dimsana" 
-                  className="rounded-[4rem] shadow-2xl skew-y-3"
+                  className="rounded-[4rem] shadow-2xl skew-y-3 object-cover aspect-square"
                 />
               </motion.div>
               <div className="absolute -top-10 -left-10 w-64 h-64 bg-orange-100 rounded-full -z-0 blur-3xl opacity-50" />
@@ -458,16 +460,16 @@ export default function App() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="col-span-2 row-span-2">
-              <img src="https://images.unsplash.com/photo-1541696490-8744a5db7f7c?q=80&w=2670&auto=format&fit=crop" className="w-full h-full object-cover rounded-3xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 1" />
+              <img src={mentaiImg} className="w-full h-full object-cover rounded-3xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 1 - Dimsum Mentai" />
             </div>
             <div className="col-span-1">
-              <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=2670&auto=format&fit=crop" className="w-full aspect-square object-cover rounded-3xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 2" />
+              <img src={dumplingKejuImg} className="w-full aspect-square object-cover rounded-3xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 2 - Dumpling Keju" />
             </div>
             <div className="col-span-1">
-              <img src="https://images.unsplash.com/photo-1563245391-45607340620c?q=80&w=2574&auto=format&fit=crop" className="w-full aspect-square object-cover rounded-3xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 3" />
+              <img src={mentaiImg2} className="w-full aspect-square object-cover rounded-3xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 3 - Dimsum Mentai 2" />
             </div>
             <div className="col-span-2">
-              <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2670&auto=format&fit=crop" className="w-full h-48 object-cover rounded-3xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 4" />
+              <img src={dumplingKejuImg2} className="w-full h-48 object-cover rounded-3xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 4 - Dumpling Keju 2" />
             </div>
           </div>
         </div>
