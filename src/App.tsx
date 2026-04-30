@@ -220,16 +220,16 @@ const SectionHeading = ({ children, subtitle, light = false }: { children: React
 const ProductCard = ({ title, description, image, tag }: { title: string, description: string, image: string, tag?: string }) => (
   <motion.div 
     whileHover={{ y: -10 }}
-    className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl shadow-gray-200/50 dark:shadow-none dark:hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] border border-transparent dark:border-gray-700 group transition-all duration-300 relative z-10 bg-clip-padding"
+    className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl shadow-gray-200/50 dark:shadow-none hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] dark:hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] border border-transparent hover:border-orange-500 dark:border-gray-700 dark:hover:border-orange-500 group transition-all duration-300 relative z-10 bg-clip-padding"
   >
-    <div className="relative h-64 overflow-hidden">
+    <div className="relative overflow-hidden bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
       <img 
         src={image} 
         alt={title} 
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-110"
       />
       {tag && (
-        <div className="absolute top-4 right-4 bg-orange-600 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
+        <div className="absolute top-4 right-4 bg-orange-600 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest z-10">
           {tag}
         </div>
       )}
@@ -618,12 +618,12 @@ export default function App() {
                 <img 
                   src={mentaiImg} 
                   alt="Dimsum Mentai" 
-                  className="absolute top-0 right-0 w-[75%] h-[75%] rounded-[3rem] shadow-2xl object-cover z-10 transform translate-x-4 -translate-y-4 hover:z-30 transition-all duration-300 hover:scale-105 border-8 border-white dark:border-gray-900"
+                  className="absolute top-0 right-0 w-[75%] h-auto rounded-[3rem] shadow-2xl z-10 transform translate-x-4 -translate-y-4 hover:z-30 transition-all duration-300 hover:scale-105 border-8 border-white dark:border-gray-900 hover:border-orange-500 hover:shadow-[0_0_40px_rgba(234,88,12,0.6)]"
                 />
                 <img 
                   src={dumplingKejuImg} 
                   alt="Dumpling Keju" 
-                  className="absolute bottom-0 left-0 w-[75%] h-[75%] rounded-[3rem] shadow-2xl object-cover z-20 transform -translate-x-4 translate-y-4 hover:z-30 transition-all duration-300 hover:scale-105 border-8 border-white dark:border-gray-900"
+                  className="absolute bottom-0 left-0 w-[75%] h-auto rounded-[3rem] shadow-2xl z-20 transform -translate-x-4 translate-y-4 hover:z-30 transition-all duration-300 hover:scale-105 border-8 border-white dark:border-gray-900 hover:border-orange-500 hover:shadow-[0_0_40px_rgba(234,88,12,0.6)]"
                 />
               </motion.div>
               <div className="absolute -top-10 -left-10 w-64 h-64 bg-orange-100 dark:bg-orange-900/20 rounded-full -z-0 blur-3xl opacity-50" />
@@ -736,18 +736,31 @@ export default function App() {
             Momen Lezat Bersama Dimsana
           </SectionHeading>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="col-span-2 row-span-2 bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
-              <img src={mentaiImg} className="w-full h-full object-cover rounded-2xl transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 1 - Dimsum Mentai" />
+          <div className="columns-1 sm:columns-2 lg:columns-4 gap-4 space-y-4">
+            <div className="break-inside-avoid bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] dark:hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] hover:border-orange-500 dark:hover:border-orange-500 transition-all duration-300 group">
+              <div className="overflow-hidden rounded-2xl">
+                <img src={mentaiImg} className="w-full h-auto transform group-hover:scale-[1.05] transition-transform duration-500" alt="Galeri 1 - Dimsum Mentai" />
+              </div>
             </div>
-            <div className="col-span-1 bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
-              <img src={dumplingKejuImg} className="w-full aspect-square object-cover rounded-2xl transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 2 - Dumpling Keju" />
+            <div className="break-inside-avoid bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] dark:hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] hover:border-orange-500 dark:hover:border-orange-500 transition-all duration-300 group">
+              <div className="overflow-hidden rounded-2xl">
+                <img src={dumplingKejuImg} className="w-full h-auto transform group-hover:scale-[1.05] transition-transform duration-500" alt="Galeri 2 - Dumpling Keju" />
+              </div>
             </div>
-            <div className="col-span-1 bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
-              <img src={mentaiImg2} className="w-full aspect-square object-cover rounded-2xl transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 3 - Dimsum Mentai 2" />
+            <div className="break-inside-avoid bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] dark:hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] hover:border-orange-500 dark:hover:border-orange-500 transition-all duration-300 group">
+              <div className="overflow-hidden rounded-2xl">
+                <img src={mentaiImg2} className="w-full h-auto transform group-hover:scale-[1.05] transition-transform duration-500" alt="Galeri 3 - Dimsum Mentai 2" />
+              </div>
             </div>
-            <div className="col-span-2 bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
-              <img src={dumplingKejuImg2} className="w-full h-48 object-cover rounded-2xl transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 4 - Dumpling Keju 2" />
+            <div className="break-inside-avoid bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] dark:hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] hover:border-orange-500 dark:hover:border-orange-500 transition-all duration-300 group">
+              <div className="overflow-hidden rounded-2xl">
+                <img src={dumplingKejuImg2} className="w-full h-auto transform group-hover:scale-[1.05] transition-transform duration-500" alt="Galeri 4 - Dumpling Keju 2" />
+              </div>
+            </div>
+            <div className="break-inside-avoid bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] dark:hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] hover:border-orange-500 dark:hover:border-orange-500 transition-all duration-300 group">
+              <div className="overflow-hidden rounded-2xl">
+                <img src={fruitTeaImg} className="w-full h-auto transform group-hover:scale-[1.05] transition-transform duration-500" alt="Galeri 5 - Fruit Tea" />
+              </div>
             </div>
           </div>
         </div>
