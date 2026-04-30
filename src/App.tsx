@@ -17,7 +17,9 @@ import {
   Quote,
   UtensilsCrossed,
   Package,
-  Soup
+  Soup,
+  Sun,
+  Moon
 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import logoImg from './picture/logo/dimsam.jpg';
@@ -26,18 +28,67 @@ import dumplingKejuImg from './picture/food/dumpling Keju.jpg';
 import mentaiImg2 from './picture/food/Dimsum mentai 2.jpg';
 import dumplingKejuImg2 from './picture/food/dumpling Keju 2.jpg';
 import fruitTeaImg from './picture/drnk/Fruit tea.jpg';
+import rizmaImg from './picture/FotoProfile/Rizmaindra.png';
+import puteraImg from './picture/FotoProfile/Putera.png';
+import bintangImg from './picture/FotoProfile/Bintang.png';
 
 // --- Components ---
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
+    if (document.documentElement.classList.contains('dark')) {
+      setIsDark(true);
+    }
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleTheme = (event: React.MouseEvent) => {
+    const x = event.clientX;
+    const y = event.clientY;
+    
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const toggle = () => {
+      document.documentElement.classList.toggle('dark');
+      setIsDark(document.documentElement.classList.contains('dark'));
+    };
+
+    // @ts-ignore - view transitions api
+    if (!document.startViewTransition) {
+      toggle();
+      return;
+    }
+
+    // @ts-ignore
+    const transition = document.startViewTransition(() => {
+      toggle();
+    });
+
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 600,
+          easing: "ease-in-out",
+          pseudoElement: "::view-transition-new(root)",
+        }
+      );
+    });
+  };
 
   const navLinks = [
     { name: 'Home', href: '#home' },
@@ -45,15 +96,16 @@ const Navbar = () => {
     { name: 'Menu', href: '#menu' },
     { name: 'Galeri', href: '#galeri' },
     { name: 'Testimoni', href: '#testimoni' },
+    { name: 'Tim Kami', href: '#tim' },
     { name: 'Kontak', href: '#kontak' },
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md py-3 shadow-sm' : 'bg-transparent py-5'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md py-3 shadow-sm dark:border-b dark:border-gray-800' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <img src={logoImg} alt="Dimsana Logo" className="w-10 h-10 rounded-full object-cover" />
-          <span className={`text-2xl font-bold tracking-tight ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
+          <span className={`text-2xl font-bold tracking-tight ${isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>
             Dimsana
           </span>
         </div>
@@ -64,11 +116,18 @@ const Navbar = () => {
             <a 
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium hover:text-orange-600 transition-colors ${isScrolled ? 'text-gray-700' : 'text-white'}`}
+              className={`text-sm font-medium hover:text-orange-600 dark:hover:text-orange-500 transition-colors ${isScrolled ? 'text-gray-700 dark:text-gray-300' : 'text-white'}`}
             >
               {link.name}
             </a>
           ))}
+          <button 
+            onClick={toggleTheme}
+            className={`p-2 rounded-full transition-colors ${isScrolled ? 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' : 'text-white hover:bg-white/20'}`}
+            aria-label="Toggle Dark Mode"
+          >
+            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
           <a 
             href="#kontak"
             className="bg-orange-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-orange-700 transition-all shadow-lg shadow-orange-600/20"
@@ -78,12 +137,20 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <button 
-          className="md:hidden p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X className={isScrolled ? 'text-gray-900' : 'text-white'} /> : <MenuIcon className={isScrolled ? 'text-gray-900' : 'text-white'} />}
-        </button>
+        <div className="md:hidden flex items-center gap-4">
+          <button 
+            onClick={toggleTheme}
+            className={`p-2 rounded-full transition-colors ${isScrolled ? 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' : 'text-white hover:bg-white/20'}`}
+          >
+            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
+          <button 
+            className="p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className={isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'} /> : <MenuIcon className={isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -93,7 +160,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-gray-100 overflow-hidden"
+            className="md:hidden bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 overflow-hidden"
           >
             <div className="flex flex-col p-4 gap-4">
               {navLinks.map((link) => (
@@ -101,7 +168,7 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-700 font-medium py-2 border-b border-gray-50 last:border-0"
+                  className="text-gray-700 dark:text-gray-300 font-medium py-2 border-b border-gray-50 dark:border-gray-800 last:border-0"
                 >
                   {link.name}
                 </a>
@@ -126,7 +193,7 @@ const SectionHeading = ({ children, subtitle, light = false }: { children: React
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`text-3xl md:text-5xl font-bold mb-4 tracking-tight ${light ? 'text-white' : 'text-gray-900'}`}
+      className={`text-3xl md:text-5xl font-bold mb-4 tracking-tight ${light ? 'text-white' : 'text-gray-900 dark:text-white'}`}
     >
       {children}
     </motion.h2>
@@ -136,7 +203,7 @@ const SectionHeading = ({ children, subtitle, light = false }: { children: React
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className={`max-w-2xl mx-auto text-lg ${light ? 'text-orange-100' : 'text-gray-600'}`}
+        className={`max-w-2xl mx-auto text-lg ${light ? 'text-orange-100' : 'text-gray-600 dark:text-gray-400'}`}
       >
         {subtitle}
       </motion.p>
@@ -153,7 +220,7 @@ const SectionHeading = ({ children, subtitle, light = false }: { children: React
 const ProductCard = ({ title, description, image, tag }: { title: string, description: string, image: string, tag?: string }) => (
   <motion.div 
     whileHover={{ y: -10 }}
-    className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-gray-200/50 group"
+    className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl shadow-gray-200/50 dark:shadow-none border border-transparent dark:border-gray-700 group transition-colors"
   >
     <div className="relative h-64 overflow-hidden">
       <img 
@@ -168,9 +235,9 @@ const ProductCard = ({ title, description, image, tag }: { title: string, descri
       )}
     </div>
     <div className="p-8 text-center">
-      <h3 className="text-xl font-bold text-gray-900 mb-3">{title}</h3>
-      <p className="text-gray-600 leading-relaxed">{description}</p>
-      <button className="mt-6 text-orange-600 font-bold flex items-center gap-1 mx-auto hover:gap-2 transition-all">
+      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{title}</h3>
+      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{description}</p>
+      <button className="mt-6 text-orange-600 dark:text-orange-500 font-bold flex items-center gap-1 mx-auto hover:gap-2 transition-all">
         Lihat Detail <ChevronRight className="w-4 h-4" />
       </button>
     </div>
@@ -178,19 +245,33 @@ const ProductCard = ({ title, description, image, tag }: { title: string, descri
 );
 
 const TestimonialCard = ({ quote, author, role }: { quote: string, author: string, role: string }) => (
-  <div className="bg-white p-10 rounded-3xl shadow-sm border border-orange-100 relative">
-    <Quote className="absolute top-6 left-6 text-orange-200 w-12 h-12 -z-0" />
+  <div className="bg-white dark:bg-gray-800 p-10 rounded-3xl shadow-sm border border-orange-100 dark:border-gray-700 relative transition-colors">
+    <Quote className="absolute top-6 left-6 text-orange-200 dark:text-orange-900/50 w-12 h-12 -z-0" />
     <div className="relative z-10">
       <div className="flex gap-1 mb-6">
         {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-orange-500 text-orange-500" />)}
       </div>
-      <p className="text-gray-700 italic text-lg leading-relaxed mb-8">"{quote}"</p>
+      <p className="text-gray-700 dark:text-gray-300 italic text-lg leading-relaxed mb-8">"{quote}"</p>
       <div>
-        <h4 className="font-bold text-gray-900">{author}</h4>
-        <p className="text-orange-600 text-sm font-medium">{role}</p>
+        <h4 className="font-bold text-gray-900 dark:text-white">{author}</h4>
+        <p className="text-orange-600 dark:text-orange-500 text-sm font-medium">{role}</p>
       </div>
     </div>
   </div>
+);
+
+const TeamCard = ({ name, nim, prodi, image }: { name: string, nim: string, prodi: string, image: string }) => (
+  <motion.div 
+    whileHover={{ y: -10 }}
+    className="bg-white dark:bg-gray-800 p-8 rounded-[3rem] shadow-xl shadow-gray-200/50 dark:shadow-none border border-transparent dark:border-gray-700 text-center transition-all group"
+  >
+    <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-orange-100 dark:border-gray-700 group-hover:border-orange-500 transition-colors">
+      <img src={image} alt={name} className="w-full h-full object-cover" />
+    </div>
+    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{name}</h3>
+    <p className="text-orange-600 dark:text-orange-500 font-bold text-sm mb-1">{nim}</p>
+    <p className="text-gray-500 dark:text-gray-400 text-sm">{prodi}</p>
+  </motion.div>
 );
 
 // --- Main App ---
@@ -206,7 +287,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FDFCFB] text-gray-900 font-sans selection:bg-orange-100 selection:text-orange-900">
+    <div className="min-h-screen bg-[#FDFCFB] dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-sans selection:bg-orange-100 dark:selection:bg-orange-900 selection:text-orange-900 dark:selection:text-orange-100 transition-colors">
       <Navbar />
 
       {/* Hero Section */}
@@ -334,7 +415,7 @@ export default function App() {
       </section>
 
       {/* Tentang Kami Section */}
-      <section id="tentang" className="py-24 bg-white relative overflow-hidden">
+      <section id="tentang" className="py-24 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-20 items-center">
             <div className="order-2 md:order-1 relative">
@@ -356,28 +437,28 @@ export default function App() {
 
             <div className="order-1 md:order-2">
               <span className="text-orange-600 font-black uppercase tracking-[0.3em] text-sm mb-4 block">Cerita Kami</span>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight tracking-tight">Kualitas Premium <br /> dalam Setiap Gigitan</h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-8">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8 leading-tight tracking-tight">Kualitas Premium <br /> dalam Setiap Gigitan</h2>
+              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">
                 Dimsana adalah UMKM kuliner yang berfokus pada penyajian dimsum berkualitas dengan cita rasa autentik. Berawal dari usaha rumahan, Dimsana hadir dengan komitmen untuk memberikan produk yang tidak hanya lezat, tetapi juga higienis dan terjangkau.
               </p>
-              <p className="text-gray-600 text-lg leading-relaxed mb-12">
+              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-12">
                 Setiap dimsum dibuat menggunakan bahan pilihan dan melalui proses produksi yang terjaga, sehingga menghasilkan rasa yang konsisten dan memuaskan di setiap momen.
               </p>
 
               <div className="grid grid-cols-2 gap-8">
-                <div className="bg-orange-50 p-8 rounded-3xl border border-orange-100 group hover:bg-orange-600 transition-all duration-300">
+                <div className="bg-orange-50 dark:bg-gray-800 p-8 rounded-3xl border border-orange-100 dark:border-gray-700 group hover:bg-orange-600 dark:hover:bg-orange-600 transition-all duration-300">
                   <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-orange-600 mb-4 group-hover:bg-white/20 group-hover:text-white">
                     <UtensilsCrossed />
                   </div>
-                  <h4 className="font-bold text-gray-900 mb-2 group-hover:text-white">Visi</h4>
-                  <p className="text-gray-600 text-sm group-hover:text-orange-50 underline decoration-orange-300 underline-offset-4 decoration-2">Menjadi pilihan utama dimsum lokal yang dikenal karena kelezatannya.</p>
+                  <h4 className="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-white">Visi</h4>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm group-hover:text-orange-50 underline decoration-orange-300 underline-offset-4 decoration-2">Menjadi pilihan utama dimsum lokal yang dikenal karena kelezatannya.</p>
                 </div>
-                <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm group hover:border-orange-600 transition-all duration-300">
+                <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm group hover:border-orange-600 dark:hover:border-orange-500 transition-all duration-300">
                   <div className="w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 mb-4 group-hover:bg-orange-600 group-hover:text-white">
                     <CheckCircle2 />
                   </div>
-                  <h4 className="font-bold text-gray-900 mb-2">Misi</h4>
-                  <ul className="text-gray-600 text-sm space-y-2">
+                  <h4 className="font-bold text-gray-900 dark:text-white mb-2">Misi</h4>
+                  <ul className="text-gray-600 dark:text-gray-300 text-sm space-y-2">
                     <li className="flex items-center gap-1"><span className="w-1.5 h-1.5 bg-orange-400 rounded-full"></span> Higienis & Berkualitas</li>
                     <li className="flex items-center gap-1"><span className="w-1.5 h-1.5 bg-orange-400 rounded-full"></span> Tanpa Pengawet</li>
                   </ul>
@@ -389,7 +470,7 @@ export default function App() {
       </section>
 
       {/* Menu / Produk Section */}
-      <section id="menu" className="py-24 bg-[#FDFCFB]">
+      <section id="menu" className="py-24 bg-[#FDFCFB] dark:bg-gray-950 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionHeading 
             subtitle="Cicipi beragam varian dimsum favorit pelanggan kami yang dibuat dengan resep rahasia dan bahan terbaik."
@@ -418,9 +499,9 @@ export default function App() {
             />
           </div>
 
-          <div className="mt-20 bg-orange-50 rounded-[3rem] p-12 md:p-16 border border-orange-100 flex flex-col md:flex-row items-center justify-between gap-12">
+          <div className="mt-20 bg-orange-50 dark:bg-gray-800 rounded-[3rem] p-12 md:p-16 border border-orange-100 dark:border-gray-700 flex flex-col md:flex-row items-center justify-between gap-12 transition-colors">
             <div className="max-w-xl">
-              <h3 className="text-3xl font-bold mb-6">Keunggulan Produk Kami</h3>
+              <h3 className="text-3xl font-bold dark:text-white mb-6">Keunggulan Produk Kami</h3>
               <div className="grid sm:grid-cols-2 gap-6">
                 {[
                   "Tanpa Pengawet",
@@ -430,17 +511,17 @@ export default function App() {
                 ].map((item, id) => (
                   <div key={id} className="flex items-center gap-3">
                     <div className="w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center text-white text-[10px]">✓</div>
-                    <span className="font-semibold text-gray-700">{item}</span>
+                    <span className="font-semibold text-gray-700 dark:text-gray-300">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
             <div className="flex gap-4">
-               <div className="text-center p-6 bg-white rounded-3xl shadow-sm border border-orange-100">
+               <div className="text-center p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-orange-100 dark:border-gray-700 transition-colors">
                   <Soup className="w-10 h-10 text-orange-600 mx-auto mb-2" />
                   <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Authentic</p>
                </div>
-               <div className="text-center p-6 bg-white rounded-3xl shadow-sm border border-orange-100">
+               <div className="text-center p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-orange-100 dark:border-gray-700 transition-colors">
                   <Soup className="w-10 h-10 text-orange-600 mx-auto mb-2" />
                   <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Premium</p>
                </div>
@@ -450,7 +531,7 @@ export default function App() {
       </section>
 
       {/* Galeri Section */}
-      <section id="galeri" className="py-24 bg-white">
+      <section id="galeri" className="py-24 bg-white dark:bg-gray-900 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionHeading 
             subtitle="Kami menghadirkan dimsum dengan tampilan yang menggugah selera dan kualitas yang terjaga di setiap prosesnya."
@@ -508,8 +589,40 @@ export default function App() {
         </div>
       </section>
 
+      {/* Tim Kami Section */}
+      <section id="tim" className="py-24 bg-[#FDFCFB] dark:bg-gray-900 transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <SectionHeading 
+            subtitle="Mengenal lebih dekat para mahasiswa yang berada di balik layar pembuatan website profil UMKM Dimsana."
+          >
+            Tim Pengembang
+          </SectionHeading>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <TeamCard 
+              name="Rizma Indra Pramudya"
+              nim="25051204370"
+              prodi="Teknik / Teknik Informatika"
+              image={rizmaImg}
+            />
+            <TeamCard 
+              name="Putera Al Khalidi"
+              nim="25051204362"
+              prodi="Teknik / Teknik Informatika"
+              image={puteraImg}
+            />
+            <TeamCard 
+              name="Bintang Wira Akbar Aghni Habibilla"
+              nim="25051204359"
+              prodi="Teknik / Teknik Informatika"
+              image={bintangImg}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Kontak Section */}
-      <section id="kontak" className="py-24 bg-white">
+      <section id="kontak" className="py-24 bg-white dark:bg-gray-950 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="bg-gray-900 rounded-[4rem] overflow-hidden shadow-2xl relative">
             <div className="grid md:grid-cols-2">
@@ -548,14 +661,14 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="bg-white p-12 md:p-20">
+              <div className="bg-white dark:bg-gray-900 p-12 md:p-20 transition-colors">
                 <form className="space-y-6">
                   <div>
                     <label className="block text-sm font-bold uppercase tracking-widest text-gray-500 mb-2">Nama Lengkap</label>
                     <input 
                       type="text" 
                       placeholder="Masukkan nama Anda"
-                      className="w-full bg-gray-50 border border-gray-200 rounded-2xl p-4 focus:ring-2 focus:ring-orange-600 outline-none transition-all"
+                      className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 dark:text-white rounded-2xl p-4 focus:ring-2 focus:ring-orange-600 outline-none transition-all"
                     />
                   </div>
                   <div>
@@ -563,7 +676,7 @@ export default function App() {
                     <input 
                       type="tel" 
                       placeholder="Contoh: 0812xxxx"
-                      className="w-full bg-gray-50 border border-gray-200 rounded-2xl p-4 focus:ring-2 focus:ring-orange-600 outline-none transition-all"
+                      className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 dark:text-white rounded-2xl p-4 focus:ring-2 focus:ring-orange-600 outline-none transition-all"
                     />
                   </div>
                   <div>
@@ -571,7 +684,7 @@ export default function App() {
                     <textarea 
                       rows={4}
                       placeholder="Ketikkan pesan atau daftar pesanan Anda..."
-                      className="w-full bg-gray-50 border border-gray-200 rounded-2xl p-4 focus:ring-2 focus:ring-orange-600 outline-none transition-all resize-none"
+                      className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 dark:text-white rounded-2xl p-4 focus:ring-2 focus:ring-orange-600 outline-none transition-all resize-none"
                     ></textarea>
                   </div>
                   <button className="w-full bg-orange-600 text-white font-bold py-5 rounded-2xl hover:bg-orange-700 transition-all shadow-xl shadow-orange-600/20">
