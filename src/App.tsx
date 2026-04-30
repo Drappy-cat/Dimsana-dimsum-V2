@@ -220,7 +220,7 @@ const SectionHeading = ({ children, subtitle, light = false }: { children: React
 const ProductCard = ({ title, description, image, tag }: { title: string, description: string, image: string, tag?: string }) => (
   <motion.div 
     whileHover={{ y: -10 }}
-    className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl shadow-gray-200/50 dark:shadow-none border border-transparent dark:border-gray-700 group transition-colors"
+    className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl shadow-gray-200/50 dark:shadow-none dark:hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] border border-transparent dark:border-gray-700 group transition-all duration-300 relative z-10 bg-clip-padding"
   >
     <div className="relative h-64 overflow-hidden">
       <img 
@@ -257,6 +257,55 @@ const TestimonialCard = ({ quote, author, role }: { quote: string, author: strin
         <p className="text-orange-600 dark:text-orange-500 text-sm font-medium">{role}</p>
       </div>
     </div>
+  </div>
+);
+
+const ConstellationsBackground = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none hidden dark:block z-0">
+    {/* Pisces */}
+    <motion.svg 
+      className="absolute left-[-5%] top-[10%] w-[400px] h-[400px] opacity-40 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" 
+      viewBox="0 0 100 100"
+      animate={{ y: [0, -20, 0], x: [0, 10, 0], rotate: [0, 2, 0] }}
+      transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+    >
+      <g stroke="white" strokeWidth="0.3" fill="white">
+        <line x1="20" y1="20" x2="35" y2="40" />
+        <line x1="35" y1="40" x2="50" y2="70" />
+        <line x1="50" y1="70" x2="65" y2="80" />
+        <line x1="65" y1="80" x2="80" y2="75" />
+        <line x1="50" y1="70" x2="70" y2="50" />
+        <line x1="70" y1="50" x2="90" y2="30" />
+        <circle cx="20" cy="20" r="1.5" />
+        <circle cx="35" cy="40" r="1" />
+        <circle cx="50" cy="70" r="1.5" />
+        <circle cx="65" cy="80" r="1" />
+        <circle cx="80" cy="75" r="1.5" />
+        <circle cx="70" cy="50" r="1" />
+        <circle cx="90" cy="30" r="1.5" />
+      </g>
+    </motion.svg>
+
+    {/* Capricorn */}
+    <motion.svg 
+      className="absolute right-[-2%] bottom-[5%] w-[350px] h-[350px] opacity-40 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" 
+      viewBox="0 0 100 100"
+      animate={{ y: [0, 20, 0], x: [0, -10, 0], rotate: [0, -2, 0] }}
+      transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+    >
+      <g stroke="white" strokeWidth="0.3" fill="white">
+        <line x1="80" y1="20" x2="50" y2="40" />
+        <line x1="50" y1="40" x2="20" y2="50" />
+        <line x1="20" y1="50" x2="30" y2="80" />
+        <line x1="30" y1="80" x2="60" y2="70" />
+        <line x1="60" y1="70" x2="50" y2="40" />
+        <circle cx="80" cy="20" r="1.5" />
+        <circle cx="50" cy="40" r="1.5" />
+        <circle cx="20" cy="50" r="1.5" />
+        <circle cx="30" cy="80" r="1.5" />
+        <circle cx="60" cy="70" r="1.5" />
+      </g>
+    </motion.svg>
   </div>
 );
 
@@ -570,8 +619,9 @@ export default function App() {
       </section>
 
       {/* Menu / Produk Section */}
-      <section id="menu" className="py-24 bg-[#FDFCFB] dark:bg-gray-950 transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <section id="menu" className="py-24 bg-[#FDFCFB] dark:bg-gray-950 relative overflow-hidden transition-colors">
+        <ConstellationsBackground />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <SectionHeading 
             subtitle="Cicipi beragam varian dimsum favorit pelanggan kami yang dibuat dengan resep rahasia dan bahan terbaik."
           >
@@ -617,11 +667,11 @@ export default function App() {
               </div>
             </div>
             <div className="flex gap-4">
-               <div className="text-center p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-orange-100 dark:border-gray-700 transition-colors">
+               <div className="text-center p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-orange-100 dark:border-gray-700 hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
                   <Soup className="w-10 h-10 text-orange-600 mx-auto mb-2" />
                   <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Authentic</p>
                </div>
-               <div className="text-center p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-orange-100 dark:border-gray-700 transition-colors">
+               <div className="text-center p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-orange-100 dark:border-gray-700 hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
                   <Soup className="w-10 h-10 text-orange-600 mx-auto mb-2" />
                   <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Premium</p>
                </div>
