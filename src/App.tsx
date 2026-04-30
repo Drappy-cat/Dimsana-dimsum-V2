@@ -4,14 +4,14 @@
  */
 
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  ChevronRight, 
-  Clock, 
-  MapPin, 
-  Instagram, 
-  Phone, 
-  CheckCircle2, 
-  Menu as MenuIcon, 
+import {
+  ChevronRight,
+  Clock,
+  MapPin,
+  Instagram,
+  Phone,
+  CheckCircle2,
+  Menu as MenuIcon,
   X,
   Star,
   Quote,
@@ -51,7 +51,7 @@ const Navbar = () => {
   const toggleTheme = (event: React.MouseEvent) => {
     const x = event.clientX;
     const y = event.clientY;
-    
+
     const endRadius = Math.hypot(
       Math.max(x, window.innerWidth - x),
       Math.max(y, window.innerHeight - y)
@@ -113,7 +113,7 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a 
+            <a
               key={link.name}
               href={link.href}
               className={`text-sm font-medium hover:text-orange-600 dark:hover:text-orange-500 transition-colors ${isScrolled ? 'text-gray-700 dark:text-gray-300' : 'text-white'}`}
@@ -121,14 +121,14 @@ const Navbar = () => {
               {link.name}
             </a>
           ))}
-          <button 
+          <button
             onClick={toggleTheme}
             className={`p-2 rounded-full transition-colors ${isScrolled ? 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' : 'text-white hover:bg-white/20'}`}
             aria-label="Toggle Dark Mode"
           >
             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
-          <a 
+          <a
             href="#kontak"
             className="bg-orange-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-orange-700 transition-all shadow-lg shadow-orange-600/20"
           >
@@ -138,13 +138,13 @@ const Navbar = () => {
 
         {/* Mobile Toggle */}
         <div className="md:hidden flex items-center gap-4">
-          <button 
+          <button
             onClick={toggleTheme}
             className={`p-2 rounded-full transition-colors ${isScrolled ? 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' : 'text-white hover:bg-white/20'}`}
           >
             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
-          <button 
+          <button
             className="p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
@@ -156,7 +156,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -164,7 +164,7 @@ const Navbar = () => {
           >
             <div className="flex flex-col p-4 gap-4">
               {navLinks.map((link) => (
-                <a 
+                <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -173,7 +173,7 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
-              <a 
+              <a
                 href="#kontak"
                 className="bg-orange-600 text-white text-center py-3 rounded-xl font-bold mt-2"
               >
@@ -189,7 +189,7 @@ const Navbar = () => {
 
 const SectionHeading = ({ children, subtitle, light = false }: { children: React.ReactNode, subtitle?: string, light?: boolean }) => (
   <div className="text-center mb-16 px-4">
-    <motion.h2 
+    <motion.h2
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -198,7 +198,7 @@ const SectionHeading = ({ children, subtitle, light = false }: { children: React
       {children}
     </motion.h2>
     {subtitle && (
-      <motion.p 
+      <motion.p
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -208,7 +208,7 @@ const SectionHeading = ({ children, subtitle, light = false }: { children: React
         {subtitle}
       </motion.p>
     )}
-    <motion.div 
+    <motion.div
       initial={{ width: 0 }}
       whileInView={{ width: 80 }}
       viewport={{ once: true }}
@@ -218,14 +218,14 @@ const SectionHeading = ({ children, subtitle, light = false }: { children: React
 );
 
 const ProductCard = ({ title, description, image, tag }: { title: string, description: string, image: string, tag?: string }) => (
-  <motion.div 
+  <motion.div
     whileHover={{ y: -10 }}
     className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl shadow-gray-200/50 dark:shadow-none hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] dark:hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] border border-transparent hover:border-orange-500 dark:border-gray-700 dark:hover:border-orange-500 group transition-all duration-300 relative z-10 bg-clip-padding"
   >
     <div className="relative overflow-hidden bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-      <img 
-        src={image} 
-        alt={title} 
+      <img
+        src={image}
+        alt={title}
         className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-110"
       />
       {tag && (
@@ -263,8 +263,8 @@ const TestimonialCard = ({ quote, author, role }: { quote: string, author: strin
 const ConstellationsBackground = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none hidden dark:block z-0">
     {/* Pisces */}
-    <motion.svg 
-      className="absolute left-[-5%] top-[10%] w-[400px] h-[400px] opacity-40 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" 
+    <motion.svg
+      className="absolute left-[-5%] top-[10%] w-[400px] h-[400px] opacity-40 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
       viewBox="0 0 100 100"
       animate={{ y: [0, -20, 0], x: [0, 10, 0], rotate: [0, 2, 0] }}
       transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
@@ -287,8 +287,8 @@ const ConstellationsBackground = () => (
     </motion.svg>
 
     {/* Capricorn */}
-    <motion.svg 
-      className="absolute right-[-2%] bottom-[5%] w-[350px] h-[350px] opacity-40 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" 
+    <motion.svg
+      className="absolute right-[-2%] bottom-[5%] w-[350px] h-[350px] opacity-40 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
       viewBox="0 0 100 100"
       animate={{ y: [0, 20, 0], x: [0, -10, 0], rotate: [0, -2, 0] }}
       transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
@@ -391,13 +391,13 @@ const ShootingStars = () => {
 
 const TeamCard = ({ name, nim, prodi, image }: { name: string, nim: string, prodi: string, image: string }) => {
   return (
-    <motion.div 
+    <motion.div
       whileHover="hover"
       initial="initial"
       className="bg-white dark:bg-gray-800 p-8 rounded-[3rem] shadow-xl shadow-gray-200/50 dark:shadow-none border border-transparent dark:border-gray-700 text-center transition-all group relative overflow-hidden"
     >
       {/* Background glow on hover */}
-      <motion.div 
+      <motion.div
         variants={{
           initial: { opacity: 0 },
           hover: { opacity: 1 }
@@ -412,13 +412,13 @@ const TeamCard = ({ name, nim, prodi, image }: { name: string, nim: string, prod
             key={i}
             variants={{
               initial: { opacity: 0, scale: 0, y: 0 },
-              hover: { 
-                opacity: [0, 1, 0], 
-                scale: [0.5, 1.5, 0.5], 
+              hover: {
+                opacity: [0, 1, 0],
+                scale: [0.5, 1.5, 0.5],
                 y: -40,
-                transition: { 
-                  duration: pos.duration, 
-                  repeat: Infinity, 
+                transition: {
+                  duration: pos.duration,
+                  repeat: Infinity,
                   delay: pos.delay,
                   ease: "easeInOut"
                 }
@@ -431,28 +431,28 @@ const TeamCard = ({ name, nim, prodi, image }: { name: string, nim: string, prod
       </div>
 
       <div className="relative z-10">
-        <motion.div 
-          variants={{ 
+        <motion.div
+          variants={{
             initial: { y: 0 },
-            hover: { y: -10, transition: { duration: 0.3 } } 
+            hover: { y: -10, transition: { duration: 0.3 } }
           }}
           className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-orange-100 dark:border-gray-700 group-hover:border-orange-500 transition-colors bg-white"
         >
           <img src={image} alt={name} className="w-full h-full object-cover" />
         </motion.div>
-        <motion.h3 
+        <motion.h3
           variants={{ hover: { y: -5 } }}
           className="text-xl font-bold text-gray-900 dark:text-white mb-2"
         >
           {name}
         </motion.h3>
-        <motion.p 
+        <motion.p
           variants={{ hover: { y: -5 } }}
           className="text-orange-600 dark:text-orange-500 font-bold text-sm mb-1"
         >
           {nim}
         </motion.p>
-        <motion.p 
+        <motion.p
           variants={{ hover: { y: -5 } }}
           className="text-gray-500 dark:text-gray-400 text-sm"
         >
@@ -482,9 +482,9 @@ export default function App() {
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gray-900">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=2670&auto=format&fit=crop" 
-            alt="Hero Background" 
+          <img
+            src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=2670&auto=format&fit=crop"
+            alt="Hero Background"
             className="w-full h-full object-cover opacity-50"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent" />
@@ -497,7 +497,7 @@ export default function App() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <motion.span 
+              <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
@@ -514,20 +514,20 @@ export default function App() {
                 Nikmati dimsum homemade dengan rasa autentik, bahan berkualitas, dan harga bersahabat. Cocok untuk segala suasana.
               </p>
               <div className="flex flex-wrap gap-4">
-                <a 
+                <a
                   href="#kontak"
                   className="bg-orange-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-orange-700 transition-all transform hover:scale-105 shadow-xl shadow-orange-600/30 flex items-center gap-2"
                 >
                   Pesan Sekarang <ChevronRight />
                 </a>
-                <a 
+                <a
                   href="#menu"
                   className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full text-lg font-bold hover:bg-white/20 transition-all"
                 >
                   Lihat Menu
                 </a>
               </div>
-              
+
               <div className="mt-12 grid grid-cols-3 gap-8">
                 <div className="text-white">
                   <p className="text-3xl font-bold mb-1">100%</p>
@@ -543,17 +543,17 @@ export default function App() {
                 </div>
               </div>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
               className="relative hidden md:block"
             >
               <div className="absolute -inset-4 bg-orange-600/20 blur-3xl rounded-full animate-pulse" />
-              <img 
-                src="https://images.unsplash.com/photo-1541696490-8744a5db7f7c?q=80&w=2670&auto=format&fit=crop" 
-                alt="Delicious Dimsum" 
+              <img
+                src="https://images.unsplash.com/photo-1541696490-8744a5db7f7c?q=80&w=2670&auto=format&fit=crop"
+                alt="Delicious Dimsum"
                 className="w-full h-auto rounded-[3rem] shadow-2xl relative z-10 border-8 border-white/5"
               />
               <div className="absolute -bottom-10 -left-10 bg-white p-6 rounded-3xl shadow-2xl z-20 max-w-[200px] hidden lg:block">
@@ -571,7 +571,7 @@ export default function App() {
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div 
+        <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 z-10"
@@ -599,7 +599,7 @@ export default function App() {
           </div>
         </div>
         <div className="absolute top-0 left-0 w-full h-full opacity-10 flex items-center justify-center pointer-events-none">
-           <span className="text-9xl font-black text-white whitespace-nowrap">DIMSANA PREMIUM HIGH QUALITY</span>
+          <span className="text-9xl font-black text-white whitespace-nowrap">DIMSANA PREMIUM HIGH QUALITY</span>
         </div>
       </section>
 
@@ -609,20 +609,20 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-20 items-center">
             <div className="order-2 md:order-1 relative">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 className="relative z-10 aspect-square"
               >
-                <img 
-                  src={mentaiImg} 
-                  alt="Dimsum Mentai" 
+                <img
+                  src={mentaiImg}
+                  alt="Dimsum Mentai"
                   className="absolute top-0 right-0 w-[75%] h-auto rounded-[3rem] shadow-2xl z-10 transform translate-x-4 -translate-y-4 hover:z-30 transition-all duration-300 hover:scale-105 border-8 border-white dark:border-gray-900 hover:border-orange-500 hover:shadow-[0_0_40px_rgba(234,88,12,0.6)]"
                 />
-                <img 
-                  src={dumplingKejuImg} 
-                  alt="Dumpling Keju" 
+                <img
+                  src={dumplingKejuImg}
+                  alt="Dumpling Keju"
                   className="absolute bottom-0 left-0 w-[75%] h-auto rounded-[3rem] shadow-2xl z-20 transform -translate-x-4 translate-y-4 hover:z-30 transition-all duration-300 hover:scale-105 border-8 border-white dark:border-gray-900 hover:border-orange-500 hover:shadow-[0_0_40px_rgba(234,88,12,0.6)]"
                 />
               </motion.div>
@@ -668,26 +668,26 @@ export default function App() {
       <section id="menu" className="py-24 bg-[#FDFCFB] dark:bg-gray-950 relative overflow-hidden transition-colors">
         <ConstellationsBackground />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <SectionHeading 
+          <SectionHeading
             subtitle="Cicipi beragam varian dimsum favorit pelanggan kami yang dibuat dengan resep rahasia dan bahan terbaik."
           >
             Varian Menu Dimsana
           </SectionHeading>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            <ProductCard 
+            <ProductCard
               title="Dimsum Mentai"
               description="Dimsum dengan topping saus mentai creamy yang menjadi favorit pelanggan kekinian."
               image={mentaiImg}
               tag="Favorit"
             />
-            <ProductCard 
+            <ProductCard
               title="Dumpling Keju"
               description="Perpaduan sempurna antara lembutnya dimsum dan lumeran keju gurih di dalamnya."
               image={dumplingKejuImg}
               tag="Best Seller"
             />
-            <ProductCard 
+            <ProductCard
               title="Fruit Tea"
               description="Minuman teh buah segar yang manis dan menyegarkan, sangat cocok disajikan dengan dimsum."
               image={fruitTeaImg}
@@ -713,14 +713,14 @@ export default function App() {
               </div>
             </div>
             <div className="flex gap-4">
-               <div className="text-center p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-orange-100 dark:border-gray-700 hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
-                  <Soup className="w-10 h-10 text-orange-600 mx-auto mb-2" />
-                  <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Authentic</p>
-               </div>
-               <div className="text-center p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-orange-100 dark:border-gray-700 hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
-                  <Soup className="w-10 h-10 text-orange-600 mx-auto mb-2" />
-                  <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Premium</p>
-               </div>
+              <div className="text-center p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-orange-100 dark:border-gray-700 hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
+                <Soup className="w-10 h-10 text-orange-600 mx-auto mb-2" />
+                <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Authentic</p>
+              </div>
+              <div className="text-center p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-orange-100 dark:border-gray-700 hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
+                <Soup className="w-10 h-10 text-orange-600 mx-auto mb-2" />
+                <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Premium</p>
+              </div>
             </div>
           </div>
         </div>
@@ -730,7 +730,7 @@ export default function App() {
       <section id="galeri" className="py-24 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors">
         <GlowingParticlesBackground />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <SectionHeading 
+          <SectionHeading
             subtitle="Kami menghadirkan dimsum dengan tampilan yang menggugah selera dan kualitas yang terjaga di setiap prosesnya."
           >
             Momen Lezat Bersama Dimsana
@@ -769,28 +769,28 @@ export default function App() {
       {/* Testimoni Section */}
       <section id="testimoni" className="py-24 bg-orange-600 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-5">
-           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <path d="M0 0 L100 0 L100 100 Z" fill="white" />
-           </svg>
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0 0 L100 0 L100 100 Z" fill="white" />
+          </svg>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <SectionHeading light subtitle="Apa kata mereka yang sudah merasakan kehangatan dan kelezatan dimsum dari dapur Dimsana.">
             Apa Kata Pelanggan
           </SectionHeading>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <TestimonialCard 
+            <TestimonialCard
               quote="Rasanya enak dan konsisten. Salah satu dimsum terbaik yang pernah saya coba. Sausnya juga juara!"
               author="Rina"
               role="Customer Tetap"
             />
-            <TestimonialCard 
+            <TestimonialCard
               quote="Produk frozen-nya sangat praktis dan tetap enak saat disajikan. Teksturnya masih lembut seperti baru dikukus."
               author="Andi"
               role="Frozen Lover"
             />
-            <TestimonialCard 
+            <TestimonialCard
               quote="Harga terjangkau dengan kualitas yang sangat baik. Isian ayamnya berasa banget, bukan cuma tepung."
               author="Sari"
               role="Food Enthusiast"
@@ -802,26 +802,26 @@ export default function App() {
       {/* Tim Kami Section */}
       <section id="tim" className="py-24 bg-[#FDFCFB] dark:bg-gray-900 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <SectionHeading 
+          <SectionHeading
             subtitle="Mengenal lebih dekat para mahasiswa yang berada di balik layar pembuatan website profil UMKM Dimsana."
           >
             Tim Pengembang
           </SectionHeading>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <TeamCard 
+            <TeamCard
               name="Rizma Indra Pramudya"
               nim="25051204370"
               prodi="Teknik / Teknik Informatika"
               image={rizmaImg}
             />
-            <TeamCard 
+            <TeamCard
               name="Putera Al Khalidi"
               nim="25051204362"
               prodi="Teknik / Teknik Informatika"
               image={puteraImg}
             />
-            <TeamCard 
+            <TeamCard
               name="Bintang Wira Akbar Aghni Habibilla"
               nim="25051204359"
               prodi="Teknik / Teknik Informatika"
@@ -875,23 +875,23 @@ export default function App() {
                 <form className="space-y-6">
                   <div>
                     <label className="block text-sm font-bold uppercase tracking-widest text-gray-500 mb-2">Nama Lengkap</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       placeholder="Masukkan nama Anda"
                       className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 dark:text-white rounded-2xl p-4 focus:ring-2 focus:ring-orange-600 outline-none transition-all"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-bold uppercase tracking-widest text-gray-500 mb-2">Nomor Telepon</label>
-                    <input 
-                      type="tel" 
+                    <input
+                      type="tel"
                       placeholder="Contoh: 0812xxxx"
                       className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 dark:text-white rounded-2xl p-4 focus:ring-2 focus:ring-orange-600 outline-none transition-all"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-bold uppercase tracking-widest text-gray-500 mb-2">Pesan / Pesanan</label>
-                    <textarea 
+                    <textarea
                       rows={4}
                       placeholder="Ketikkan pesan atau daftar pesanan Anda..."
                       className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 dark:text-white rounded-2xl p-4 focus:ring-2 focus:ring-orange-600 outline-none transition-all resize-none"
@@ -947,7 +947,7 @@ export default function App() {
             </div>
           </div>
         </div>
-        
+
         {/* Abstract shapes */}
         <div className="absolute top-1/2 left-0 -translate-x-1/2 w-96 h-96 bg-orange-600/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 right-0 translate-x-1/4 w-[50vw] h-[50vw] bg-orange-600/5 rounded-full blur-[150px] pointer-events-none" />
