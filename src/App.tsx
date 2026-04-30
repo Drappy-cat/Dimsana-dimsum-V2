@@ -309,6 +309,47 @@ const ConstellationsBackground = () => (
   </div>
 );
 
+const GlowingParticlesBackground = () => {
+  const particles = [
+    { top: '15%', left: '10%', size: 4, delay: 0, duration: 3 },
+    { top: '25%', left: '85%', size: 6, delay: 1, duration: 4 },
+    { top: '75%', left: '20%', size: 3, delay: 0.5, duration: 2.5 },
+    { top: '80%', left: '70%', size: 5, delay: 2, duration: 3.5 },
+    { top: '45%', left: '50%', size: 4, delay: 1.5, duration: 3 },
+    { top: '60%', left: '90%', size: 7, delay: 0.2, duration: 4.5 },
+    { top: '30%', left: '30%', size: 5, delay: 2.5, duration: 3.2 },
+    { top: '85%', left: '40%', size: 4, delay: 0.8, duration: 2.8 },
+  ];
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none hidden dark:block z-0">
+      {particles.map((p, i) => (
+        <motion.div
+          key={i}
+          className="absolute bg-orange-400 rounded-full shadow-[0_0_15px_3px_rgba(251,146,60,0.8)] dark:bg-orange-500 dark:shadow-[0_0_15px_3px_rgba(249,115,22,0.8)]"
+          style={{
+            top: p.top,
+            left: p.left,
+            width: p.size,
+            height: p.size,
+          }}
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0.2, 1, 0.2],
+            scale: [1, 1.5, 1],
+          }}
+          transition={{
+            duration: p.duration,
+            repeat: Infinity,
+            delay: p.delay,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 const particlePositions = [
   { top: '10%', left: '20%', delay: 0, duration: 2 },
   { top: '30%', left: '80%', delay: 0.5, duration: 2.5 },
@@ -572,16 +613,21 @@ export default function App() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="relative z-10"
+                className="relative z-10 aspect-square"
               >
                 <img 
-                  src={logoImg} 
-                  alt="About Dimsana" 
-                  className="rounded-[4rem] shadow-2xl skew-y-3 object-cover aspect-square"
+                  src={mentaiImg} 
+                  alt="Dimsum Mentai" 
+                  className="absolute top-0 right-0 w-[75%] h-[75%] rounded-[3rem] shadow-2xl object-cover z-10 transform translate-x-4 -translate-y-4 hover:z-30 transition-all duration-300 hover:scale-105 border-8 border-white dark:border-gray-900"
+                />
+                <img 
+                  src={dumplingKejuImg} 
+                  alt="Dumpling Keju" 
+                  className="absolute bottom-0 left-0 w-[75%] h-[75%] rounded-[3rem] shadow-2xl object-cover z-20 transform -translate-x-4 translate-y-4 hover:z-30 transition-all duration-300 hover:scale-105 border-8 border-white dark:border-gray-900"
                 />
               </motion.div>
-              <div className="absolute -top-10 -left-10 w-64 h-64 bg-orange-100 rounded-full -z-0 blur-3xl opacity-50" />
-              <div className="absolute h-full w-full border-4 border-dashed border-orange-200 top-10 left-10 rounded-[4rem] -z-10" />
+              <div className="absolute -top-10 -left-10 w-64 h-64 bg-orange-100 dark:bg-orange-900/20 rounded-full -z-0 blur-3xl opacity-50" />
+              <div className="absolute h-full w-full border-4 border-dashed border-orange-200 dark:border-gray-700 top-10 left-10 rounded-[4rem] -z-10" />
             </div>
 
             <div className="order-1 md:order-2">
@@ -681,8 +727,9 @@ export default function App() {
       </section>
 
       {/* Galeri Section */}
-      <section id="galeri" className="py-24 bg-white dark:bg-gray-900 transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <section id="galeri" className="py-24 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors">
+        <GlowingParticlesBackground />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <SectionHeading 
             subtitle="Kami menghadirkan dimsum dengan tampilan yang menggugah selera dan kualitas yang terjaga di setiap prosesnya."
           >
@@ -690,17 +737,17 @@ export default function App() {
           </SectionHeading>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="col-span-2 row-span-2">
-              <img src={mentaiImg} className="w-full h-full object-cover rounded-3xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 1 - Dimsum Mentai" />
+            <div className="col-span-2 row-span-2 bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
+              <img src={mentaiImg} className="w-full h-full object-cover rounded-2xl transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 1 - Dimsum Mentai" />
             </div>
-            <div className="col-span-1">
-              <img src={dumplingKejuImg} className="w-full aspect-square object-cover rounded-3xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 2 - Dumpling Keju" />
+            <div className="col-span-1 bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
+              <img src={dumplingKejuImg} className="w-full aspect-square object-cover rounded-2xl transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 2 - Dumpling Keju" />
             </div>
-            <div className="col-span-1">
-              <img src={mentaiImg2} className="w-full aspect-square object-cover rounded-3xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 3 - Dimsum Mentai 2" />
+            <div className="col-span-1 bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
+              <img src={mentaiImg2} className="w-full aspect-square object-cover rounded-2xl transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 3 - Dimsum Mentai 2" />
             </div>
-            <div className="col-span-2">
-              <img src={dumplingKejuImg2} className="w-full h-48 object-cover rounded-3xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 4 - Dumpling Keju 2" />
+            <div className="col-span-2 bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300">
+              <img src={dumplingKejuImg2} className="w-full h-48 object-cover rounded-2xl transform hover:scale-[1.02] transition-transform duration-500" alt="Galeri 4 - Dumpling Keju 2" />
             </div>
           </div>
         </div>
