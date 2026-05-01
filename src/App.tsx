@@ -28,6 +28,8 @@ import dumplingKejuImg from './picture/food/dumpling Keju.jpg';
 import mentaiImg2 from './picture/food/Dimsum mentai 2.jpg';
 import dumplingKejuImg2 from './picture/food/dumpling Keju 2.jpg';
 import fruitTeaImg from './picture/drnk/Fruit tea.jpg';
+import fruitTeaLemonImg from './picture/drnk/Fruit tea lemon.jpg';
+import simpleLemonIcedTeaImg from './picture/drnk/Simple Lemon Iced Tea.jpg';
 import rizmaImg from './picture/FotoProfile/Rizmaindra.png';
 import puteraImg from './picture/FotoProfile/Putera.png';
 import bintangImg from './picture/FotoProfile/Bintang.png';
@@ -237,9 +239,6 @@ const ProductCard = ({ title, description, image, tag }: { title: string, descri
     <div className="p-8 text-center">
       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{title}</h3>
       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{description}</p>
-      <button className="mt-6 text-orange-600 dark:text-orange-500 font-bold flex items-center gap-1 mx-auto hover:gap-2 transition-all">
-        Lihat Detail <ChevronRight className="w-4 h-4" />
-      </button>
     </div>
   </motion.div>
 );
@@ -674,25 +673,51 @@ export default function App() {
             Varian Menu Dimsana
           </SectionHeading>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            <ProductCard
-              title="Dimsum Mentai"
-              description="Dimsum dengan topping saus mentai creamy yang menjadi favorit pelanggan kekinian."
-              image={mentaiImg}
-              tag="Favorit"
-            />
-            <ProductCard
-              title="Dumpling Keju"
-              description="Perpaduan sempurna antara lembutnya dimsum dan lumeran keju gurih di dalamnya."
-              image={dumplingKejuImg}
-              tag="Best Seller"
-            />
-            <ProductCard
-              title="Fruit Tea"
-              description="Minuman teh buah segar yang manis dan menyegarkan, sangat cocok disajikan dengan dimsum."
-              image={fruitTeaImg}
-              tag="Segar"
-            />
+          {/* Menu Makanan */}
+          <div className="mb-16">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center flex items-center justify-center gap-3">
+              <UtensilsCrossed className="w-8 h-8 text-orange-600" />
+              Makanan
+            </h3>
+            <div className="grid sm:grid-cols-2 gap-10 max-w-4xl mx-auto">
+              <ProductCard
+                title="Dimsum Mentai"
+                description="Dimsum dengan topping saus mentai creamy yang menjadi favorit pelanggan kekinian."
+                image={mentaiImg}
+                tag="Favorit"
+              />
+              <ProductCard
+                title="Dumpling Keju"
+                description="Perpaduan sempurna antara lembutnya dimsum dan lumeran keju gurih di dalamnya."
+                image={dumplingKejuImg}
+                tag="Best Seller"
+              />
+            </div>
+          </div>
+
+          {/* Menu Minuman */}
+          <div>
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center flex items-center justify-center gap-3">
+              <span className="text-orange-600 text-3xl">🥤</span>
+              Minuman
+            </h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+              <ProductCard
+                title="Fruit Tea"
+                description="Minuman teh buah segar yang manis dan menyegarkan, sangat cocok disajikan dengan dimsum."
+                image={fruitTeaImg}
+              />
+              <ProductCard
+                title="Fruit Tea"
+                description="Perpaduan sempurna teh buah dengan kesegaran lemon alami untuk melegakan dahaga."
+                image={fruitTeaLemonImg}
+              />
+              <ProductCard
+                title="Fruit Tea"
+                description="Es teh lemon klasik yang menyegarkan, pilihan tepat untuk menemani santap dimsum."
+                image={simpleLemonIcedTeaImg}
+              />
+            </div>
           </div>
 
           <div className="mt-20 bg-orange-50 dark:bg-gray-800 rounded-[3rem] p-12 md:p-16 border border-orange-100 dark:border-gray-700 flex flex-col md:flex-row items-center justify-between gap-12 transition-colors">
@@ -760,6 +785,16 @@ export default function App() {
             <div className="break-inside-avoid bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] dark:hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] hover:border-orange-500 dark:hover:border-orange-500 transition-all duration-300 group">
               <div className="overflow-hidden rounded-2xl">
                 <img src={fruitTeaImg} className="w-full h-auto transform group-hover:scale-[1.05] transition-transform duration-500" alt="Galeri 5 - Fruit Tea" />
+              </div>
+            </div>
+            <div className="break-inside-avoid bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] dark:hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] hover:border-orange-500 dark:hover:border-orange-500 transition-all duration-300 group">
+              <div className="overflow-hidden rounded-2xl">
+                <img src={fruitTeaLemonImg} className="w-full h-auto transform group-hover:scale-[1.05] transition-transform duration-500" alt="Galeri 6 - Fruit Tea Lemon" />
+              </div>
+            </div>
+            <div className="break-inside-avoid bg-white dark:bg-gray-800 p-2 md:p-3 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] dark:hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] hover:border-orange-500 dark:hover:border-orange-500 transition-all duration-300 group">
+              <div className="overflow-hidden rounded-2xl">
+                <img src={simpleLemonIcedTeaImg} className="w-full h-auto transform group-hover:scale-[1.05] transition-transform duration-500" alt="Galeri 7 - Simple Lemon Iced Tea" />
               </div>
             </div>
           </div>
