@@ -465,6 +465,20 @@ const TeamCard = ({ name, nim, prodi, image }: { name: string, nim: string, prod
 // --- Main App ---
 
 export default function App() {
+  const [formData, setFormData] = useState({
+    nama: '',
+    telepon: '',
+    pesan: ''
+  });
+
+  const handleWhatsAppSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const { nama, telepon, pesan } = formData;
+    const text = `Halo Dimsana, saya ${nama} (${telepon}).\n\n${pesan}`;
+    const encodedText = encodeURIComponent(text);
+    window.open(`https://wa.me/6287848243910?text=${encodedText}`, '_blank');
+  };
+
   // Update SEO and Meta tags
   useEffect(() => {
     document.title = "Dimsana - Dimsum Lezat, Teman Santai di Setiap Momen";
@@ -882,7 +896,9 @@ export default function App() {
                     </div>
                     <div>
                       <p className="text-gray-400 text-sm font-bold uppercase tracking-widest mb-1">WhatsApp</p>
-                      <p className="text-xl font-bold">08xxxxxxxxxx</p>
+                      <a href="https://wa.me/6287848243910" target="_blank" rel="noopener noreferrer" className="text-xl font-bold hover:text-orange-500 transition-colors">
+                        +62 878-4824-3910
+                      </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-6">
@@ -907,11 +923,14 @@ export default function App() {
               </div>
 
               <div className="bg-white dark:bg-gray-900 p-8 md:p-20 transition-colors">
-                <form className="space-y-6">
+                <form onSubmit={handleWhatsAppSubmit} className="space-y-6">
                   <div>
                     <label className="block text-sm font-bold uppercase tracking-widest text-gray-500 mb-2">Nama Lengkap</label>
                     <input
                       type="text"
+                      required
+                      value={formData.nama}
+                      onChange={(e) => setFormData({ ...formData, nama: e.target.value })}
                       placeholder="Masukkan nama Anda"
                       className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 dark:text-white rounded-2xl p-4 focus:ring-2 focus:ring-orange-600 outline-none transition-all"
                     />
@@ -920,6 +939,9 @@ export default function App() {
                     <label className="block text-sm font-bold uppercase tracking-widest text-gray-500 mb-2">Nomor Telepon</label>
                     <input
                       type="tel"
+                      required
+                      value={formData.telepon}
+                      onChange={(e) => setFormData({ ...formData, telepon: e.target.value })}
                       placeholder="Contoh: 0812xxxx"
                       className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 dark:text-white rounded-2xl p-4 focus:ring-2 focus:ring-orange-600 outline-none transition-all"
                     />
@@ -928,11 +950,14 @@ export default function App() {
                     <label className="block text-sm font-bold uppercase tracking-widest text-gray-500 mb-2">Pesan / Pesanan</label>
                     <textarea
                       rows={4}
+                      required
+                      value={formData.pesan}
+                      onChange={(e) => setFormData({ ...formData, pesan: e.target.value })}
                       placeholder="Ketikkan pesan atau daftar pesanan Anda..."
                       className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 dark:text-white rounded-2xl p-4 focus:ring-2 focus:ring-orange-600 outline-none transition-all resize-none"
                     ></textarea>
                   </div>
-                  <button className="w-full bg-orange-600 text-white font-bold py-5 rounded-2xl hover:bg-orange-700 transition-all shadow-xl shadow-orange-600/20">
+                  <button type="submit" className="w-full bg-orange-600 text-white font-bold py-5 rounded-2xl hover:bg-orange-700 transition-all shadow-xl shadow-orange-600/20">
                     Kirim Pesan via WhatsApp
                   </button>
                 </form>
