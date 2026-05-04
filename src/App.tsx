@@ -482,7 +482,7 @@ export default function App() {
       <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gray-900">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=2670&auto=format&fit=crop"
+            src={dumplingKejuImg}
             alt="Hero Background"
             className="w-full h-full object-cover opacity-50"
           />
@@ -512,33 +512,33 @@ export default function App() {
               <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-lg leading-relaxed">
                 Nikmati dimsum homemade dengan rasa autentik, bahan berkualitas, dan harga bersahabat. Cocok untuk segala suasana.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                 <a
                   href="#kontak"
-                  className="bg-orange-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-orange-700 transition-all transform hover:scale-105 shadow-xl shadow-orange-600/30 flex items-center gap-2"
+                  className="bg-orange-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-orange-700 transition-all transform hover:scale-105 shadow-xl shadow-orange-600/30 flex items-center justify-center gap-2 w-full sm:w-auto"
                 >
                   Pesan Sekarang <ChevronRight />
                 </a>
                 <a
                   href="#menu"
-                  className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full text-lg font-bold hover:bg-white/20 transition-all"
+                  className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full text-lg font-bold hover:bg-white/20 transition-all w-full sm:w-auto text-center"
                 >
                   Lihat Menu
                 </a>
               </div>
 
-              <div className="mt-12 grid grid-cols-3 gap-8">
+              <div className="mt-12 grid grid-cols-3 gap-4 sm:gap-8">
                 <div className="text-white">
-                  <p className="text-3xl font-bold mb-1">100%</p>
-                  <p className="text-gray-400 text-xs uppercase tracking-widest font-semibold">Bahan Fresh</p>
+                  <p className="text-2xl sm:text-3xl font-bold mb-1">100%</p>
+                  <p className="text-gray-400 text-[10px] sm:text-xs uppercase tracking-widest font-semibold">Bahan Fresh</p>
                 </div>
                 <div className="text-white">
-                  <p className="text-3xl font-bold mb-1">20+</p>
-                  <p className="text-gray-400 text-xs uppercase tracking-widest font-semibold">Varian Rasa</p>
+                  <p className="text-2xl sm:text-3xl font-bold mb-1">20+</p>
+                  <p className="text-gray-400 text-[10px] sm:text-xs uppercase tracking-widest font-semibold">Varian Rasa</p>
                 </div>
                 <div className="text-white">
-                  <p className="text-3xl font-bold mb-1">1k+</p>
-                  <p className="text-gray-400 text-xs uppercase tracking-widest font-semibold">Happy Buyers</p>
+                  <p className="text-2xl sm:text-3xl font-bold mb-1">1k+</p>
+                  <p className="text-gray-400 text-[10px] sm:text-xs uppercase tracking-widest font-semibold">Happy Buyers</p>
                 </div>
               </div>
             </motion.div>
@@ -551,7 +551,7 @@ export default function App() {
             >
               <div className="absolute -inset-4 bg-orange-600/20 blur-3xl rounded-full animate-pulse" />
               <img
-                src="https://images.unsplash.com/photo-1541696490-8744a5db7f7c?q=80&w=2670&auto=format&fit=crop"
+                src={mentaiImg}
                 alt="Delicious Dimsum"
                 className="w-full h-auto rounded-[3rem] shadow-2xl relative z-10 border-8 border-white/5"
               />
@@ -583,22 +583,22 @@ export default function App() {
 
       {/* Highlights Bar */}
       <section className="bg-orange-600 py-10 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-around gap-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row flex-wrap justify-around items-start sm:items-center gap-6 sm:gap-8 relative z-10">
           <div className="flex items-center gap-4 text-white">
-            <UtensilsCrossed className="w-8 h-8 opacity-70" />
-            <span className="font-bold text-lg">Dibuat Fresh Setiap Hari</span>
+            <UtensilsCrossed className="w-6 h-6 sm:w-8 sm:h-8 opacity-70" />
+            <span className="font-bold text-base sm:text-lg">Dibuat Fresh Setiap Hari</span>
           </div>
           <div className="flex items-center gap-4 text-white">
-            <Star className="w-8 h-8 opacity-70" />
-            <span className="font-bold text-lg">Kualitas Rasa Premium</span>
+            <Star className="w-6 h-6 sm:w-8 sm:h-8 opacity-70" />
+            <span className="font-bold text-base sm:text-lg">Kualitas Rasa Premium</span>
           </div>
           <div className="flex items-center gap-4 text-white">
-            <Package className="w-8 h-8 opacity-70" />
-            <span className="font-bold text-lg">Siap Makan & Frozen</span>
+            <Package className="w-6 h-6 sm:w-8 sm:h-8 opacity-70" />
+            <span className="font-bold text-base sm:text-lg">Siap Makan & Frozen</span>
           </div>
         </div>
         <div className="absolute top-0 left-0 w-full h-full opacity-10 flex items-center justify-center pointer-events-none">
-          <span className="text-9xl font-black text-white whitespace-nowrap">DIMSANA PREMIUM HIGH QUALITY</span>
+          <span className="text-7xl md:text-9xl font-black text-white whitespace-nowrap">DIMSANA PREMIUM HIGH QUALITY</span>
         </div>
       </section>
 
@@ -606,7 +606,7 @@ export default function App() {
       <section id="tentang" className="py-24 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors">
         <ShootingStars />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid md:grid-cols-2 gap-20 items-center">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
             <div className="order-2 md:order-1 relative">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -639,22 +639,22 @@ export default function App() {
                 Setiap dimsum dibuat menggunakan bahan pilihan dan melalui proses produksi yang terjaga, sehingga menghasilkan rasa yang konsisten dan memuaskan di setiap momen.
               </p>
 
-              <div className="grid grid-cols-2 gap-8">
-                <div className="bg-orange-50 dark:bg-gray-800 p-8 rounded-3xl border border-orange-100 dark:border-gray-700 group hover:bg-orange-600 dark:hover:bg-orange-600 transition-all duration-300">
-                  <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-orange-600 mb-4 group-hover:bg-white/20 group-hover:text-white">
-                    <UtensilsCrossed />
+              <div className="grid sm:grid-cols-2 gap-6 md:gap-8">
+                <div className="bg-orange-50 dark:bg-gray-800 p-6 md:p-8 rounded-3xl border border-orange-100 dark:border-gray-700 group hover:bg-orange-600 dark:hover:bg-orange-600 transition-all duration-300">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-2xl flex items-center justify-center text-orange-600 mb-4 group-hover:bg-white/20 group-hover:text-white">
+                    <UtensilsCrossed className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
                   <h4 className="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-white">Visi</h4>
                   <p className="text-gray-600 dark:text-gray-300 text-sm group-hover:text-orange-50 underline decoration-orange-300 underline-offset-4 decoration-2">Menjadi pilihan utama dimsum lokal yang dikenal karena kelezatannya.</p>
                 </div>
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm group hover:border-orange-600 dark:hover:border-orange-500 transition-all duration-300">
-                  <div className="w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 mb-4 group-hover:bg-orange-600 group-hover:text-white">
-                    <CheckCircle2 />
+                <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm group hover:border-orange-600 dark:hover:border-orange-500 transition-all duration-300">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 mb-4 group-hover:bg-orange-600 group-hover:text-white">
+                    <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
                   <h4 className="font-bold text-gray-900 dark:text-white mb-2">Misi</h4>
                   <ul className="text-gray-600 dark:text-gray-300 text-sm space-y-2">
-                    <li className="flex items-center gap-1"><span className="w-1.5 h-1.5 bg-orange-400 rounded-full"></span> Higienis & Berkualitas</li>
-                    <li className="flex items-center gap-1"><span className="w-1.5 h-1.5 bg-orange-400 rounded-full"></span> Tanpa Pengawet</li>
+                    <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-orange-400 rounded-full shrink-0"></span> Higienis & Berkualitas</li>
+                    <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-orange-400 rounded-full shrink-0"></span> Tanpa Pengawet</li>
                   </ul>
                 </div>
               </div>
@@ -720,10 +720,10 @@ export default function App() {
             </div>
           </div>
 
-          <div className="mt-20 bg-orange-50 dark:bg-gray-800 rounded-[3rem] p-12 md:p-16 border border-orange-100 dark:border-gray-700 flex flex-col md:flex-row items-center justify-between gap-12 transition-colors">
-            <div className="max-w-xl">
-              <h3 className="text-3xl font-bold dark:text-white mb-6">Keunggulan Produk Kami</h3>
-              <div className="grid sm:grid-cols-2 gap-6">
+          <div className="mt-16 md:mt-20 bg-orange-50 dark:bg-gray-800 rounded-3xl md:rounded-[3rem] p-8 md:p-16 border border-orange-100 dark:border-gray-700 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-12 transition-colors">
+            <div className="max-w-xl text-center md:text-left">
+              <h3 className="text-2xl md:text-3xl font-bold dark:text-white mb-6">Keunggulan Produk Kami</h3>
+              <div className="grid sm:grid-cols-2 gap-4 md:gap-6 text-left">
                 {[
                   "Tanpa Pengawet",
                   "Diproduksi Higienis",
@@ -869,14 +869,14 @@ export default function App() {
       {/* Kontak Section */}
       <section id="kontak" className="py-24 bg-white dark:bg-gray-950 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="bg-gray-900 rounded-[4rem] overflow-hidden shadow-2xl relative">
+          <div className="bg-gray-900 rounded-3xl md:rounded-[4rem] overflow-hidden shadow-2xl relative">
             <div className="grid md:grid-cols-2">
-              <div className="p-12 md:p-20 text-white relative z-10">
-                <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight">Hubungi Kami <br /> untuk Pesanan</h2>
-                <p className="text-gray-400 mb-12 text-lg leading-relaxed">Siap melayani pesanan harian, stok rumah tangga (frozen), hingga kebutuhan katering acara spesial Anda.</p>
+              <div className="p-8 md:p-20 text-white relative z-10">
+                <h2 className="text-3xl md:text-5xl font-bold mb-6 md:mb-8 tracking-tight">Hubungi Kami <br /> untuk Pesanan</h2>
+                <p className="text-gray-400 mb-8 md:mb-12 text-base md:text-lg leading-relaxed">Siap melayani pesanan harian, stok rumah tangga (frozen), hingga kebutuhan katering acara spesial Anda.</p>
 
-                <div className="space-y-10">
-                  <div className="flex items-start gap-6">
+                <div className="space-y-8 md:space-y-10">
+                  <div className="flex items-start gap-4 md:gap-6">
                     <div className="w-14 h-14 bg-orange-600 rounded-2xl flex items-center justify-center shrink-0">
                       <Phone className="w-7 h-7" />
                     </div>
@@ -906,7 +906,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-gray-900 p-12 md:p-20 transition-colors">
+              <div className="bg-white dark:bg-gray-900 p-8 md:p-20 transition-colors">
                 <form className="space-y-6">
                   <div>
                     <label className="block text-sm font-bold uppercase tracking-widest text-gray-500 mb-2">Nama Lengkap</label>
