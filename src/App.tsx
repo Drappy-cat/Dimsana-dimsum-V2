@@ -715,21 +715,11 @@ export default function App() {
               <span className="text-orange-600 text-3xl">🥤</span>
               Minuman
             </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 gap-10 max-w-sm mx-auto">
               <ProductCard
                 title="Fruit Tea"
                 description="Minuman teh buah segar yang manis dan menyegarkan, sangat cocok disajikan dengan dimsum."
                 image={fruitTeaImg}
-              />
-              <ProductCard
-                title="Fruit Tea"
-                description="Perpaduan sempurna teh buah dengan kesegaran lemon alami untuk melegakan dahaga."
-                image={fruitTeaLemonImg}
-              />
-              <ProductCard
-                title="Fruit Tea"
-                description="Es teh lemon klasik yang menyegarkan, pilihan tepat untuk menemani santap dimsum."
-                image={simpleLemonIcedTeaImg}
               />
             </div>
           </div>
@@ -890,7 +880,7 @@ export default function App() {
                 <p className="text-gray-400 mb-8 md:mb-12 text-base md:text-lg leading-relaxed">Siap melayani pesanan harian, stok rumah tangga (frozen), hingga kebutuhan katering acara spesial Anda.</p>
 
                 <div className="space-y-8 md:space-y-10">
-                  <div className="flex items-start gap-4 md:gap-6">
+                  <div className="hidden items-start gap-4 md:gap-6">
                     <div className="w-14 h-14 bg-orange-600 rounded-2xl flex items-center justify-center shrink-0">
                       <Phone className="w-7 h-7" />
                     </div>
